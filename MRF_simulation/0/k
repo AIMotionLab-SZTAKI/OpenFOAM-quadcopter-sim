@@ -20,42 +20,43 @@ internalField   uniform 0.06;
 
 boundaryField
 {
-	wall-downflow
-    {
-        type            fixedValue;
-		value			uniform 0.06;
-    }
 
-    wall-stator
+    inflow
     {
-        type            fixedValue;
-        value           uniform 0.06;
-    }
-
-    inflow-downflow
-    {
-        type            fixedValue;
-		value			uniform 0.06;
+        type            turbulentIntensityKineticEnergyInlet;
+		intensity		0.01;		// 1% turbulence
+		value			uniform 1;	// placeholder	
     }
 	
-	inflow-stator
+	outflow-downflow
 	{
-		type			fixedValue;
-		value			uniform 0.06;
+        type            zeroGradient;
 	}
 	
-	wall-rotor
+	outflow-stator
 	{
-		type			fixedValue;
-		value			uniform 0.06;
+		type			zeroGradient;
+	}
+	
+	side
+	{
+		type			symmetry;
 	}
 	
 	blade
 	{
-		type			kqRWallFunction;
-		value			$internalField;
+		type			zeroGradient;
 	}
 	
+	AMI1
+	{
+		type			cyclicAMI;
+	}
+	
+	AMI2
+	{
+		type			cyclicAMI;
+	}
 }
 
 

@@ -5,24 +5,22 @@
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
-FoamFile
+
+forces
 {
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      turbulenceProperties;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    type          forces;
+    libs          (" libforces .so");
 
-simulationType      RAS;
+    writeControl  timeStep;
+    timeInterval  1;
 
-RAS
-{
-    RASModel        kOmegaSST;
+    patches       (blade);
+    rho           rhoInf;     // Indicates incompressible
+    log           true;
+    rhoInf        1.205;          // Redundant for incompressible
 
-    turbulence      on;
-
-    printCoeffs     on;
+    CofR          (0 0 0);    // Rotation around centre line of propeller
+    pitchAxis     (0 0 1);
 }
 
 

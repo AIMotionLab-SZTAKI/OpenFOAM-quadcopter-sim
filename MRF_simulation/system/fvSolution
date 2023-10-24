@@ -16,65 +16,72 @@ FoamFile
 
 solvers
 {
-    "pcorr.*"
-    {
-        solver          GAMG;
-        tolerance       1e-2;
-        relTol          0;
-        smoother        DICGaussSeidel;
-        cacheAgglomeration no;
-        maxIter         50;
-    }
-
     p
     {
-        $pcorr;
+        solver					GAMG;
+        tolerance       		1e-5;
+        relTol          		0.05;
+		smoother				GaussSeidel;
+		nCellsInCoarsestLevel	1400;
+		cacheAgglomeration		true;
+		agglomerator			faceAreaPair;
+		mergeLevels				1;
+    }
+
+    U
+    {
+        solver			smoothSolver;
+		smoother		GaussSeidel;
+		nSweeps			2;
+		tolerance		1e-5;
+		relTol			0.1;
+    }
+
+    k
+    {
+        solver			smoothSolver;
+        smoother        GaussSeidel;
+		nSweeps			2;
         tolerance       1e-5;
-        relTol          0.01;
-    }
-
-    pFinal
-    {
-        $p;
-        tolerance       1e-6;
-        relTol          0;
-    }
-
-    "(U|k|epsilon)"
-    {
-        solver          smoothSolver;
-        smoother        symGaussSeidel;
-        tolerance       1e-6;
         relTol          0.1;
     }
 
-    "(U|k|epsilon)Final"
+    omega
     {
         solver          smoothSolver;
-        smoother        symGaussSeidel;
-        tolerance       1e-6;
-        relTol          0;
+        smoother        GaussSeidel;
+		nSweeps			2;
+        tolerance       1e-5;
+        relTol          0.1;
     }
 	
 }
 
-PIMPLE
+SIMPLE
 {
-    correctPhi          no;
-    nOuterCorrectors    2;
-    nCorrectors         1;
-    nNonOrthogonalCorrectors 0;
+    nNonOrthogonalCorrectors 	0;
+	pRefCell					0;
+	pRefValue					0;
+	residualControl
+	{
+		p						1e-5;
+		U						1e-5;
+		"(k|omega)"				1e-5;
+	}
 }
 
 relaxationFactors
 {
-    "(U|k|epsilon).*"   1;
+	fields
+	{
+		p			0.3;
+	}
+	equations
+	{
+		U			0.5;
+		k			0.3;
+		omega		0.3;
+	}
 }
-
-cache
-{
-    grad(U);
-}
-
 
 // ************************************************************************* //

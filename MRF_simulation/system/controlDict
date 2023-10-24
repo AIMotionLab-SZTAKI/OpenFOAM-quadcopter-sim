@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     pimpleFoam;
+application     simpleFoam;
 
 solver          incompressibleFluid;
 
@@ -49,6 +49,11 @@ runTimeModifiable yes;
 adjustTimeStep  no;
 
 maxCo           5;
+
+functions
+{
+	#include "forces"
+}
 
 
 // ************************************************************************* //

@@ -21,39 +21,40 @@ internalField   uniform 0;
 boundaryField
 {
 
-    wall-downflow
+    inflow
     {
         type            zeroGradient;
     }
-
-    wall-stator
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
-
-    inflow-downflow
-    {
-        type            fixedValue;
-		value			uniform 0;
-    }
 	
-	inflow-stator
+	outflow-downflow
 	{
-		type			fixedValue;
+        type            fixedValue;
 		value			uniform 0;
 	}
 	
-	wall-rotor
+	outflow-stator
 	{
-		type			fixedValue;
+        type            fixedValue;
 		value			uniform 0;
+	}
+	
+	side
+	{
+		type			symmetry;
 	}
 	
 	blade
 	{
-		type			fixedValue;
-		value			uniform 0;
+		type			zeroGradient;
+	
+	AMI1
+	{
+		type			cyclicAMI;
+	}
+	
+	AMI2
+	{
+		type			cyclicAMI;
 	}
 }
 

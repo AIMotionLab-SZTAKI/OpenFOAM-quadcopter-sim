@@ -14,44 +14,52 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-5
+7
 (
-    inflow-downflow
+    inflow
     {
         type            wall;
+        nFaces          2692;
+        startFace       11932916;
+    }
+    outflow-downflow
+    {
+        type            patch;
         nFaces          2332;
-        startFace       11937580;
+        startFace       11935608;
     }
-	
-    inflow-stator
+    outflow-stator
+    {
+        type            patch;
+        nFaces          5120;
+        startFace       11937940;
+    }
+    side
     {
         type            wall;
-        nFaces          23144;
-        startFace       11939912;
+        nFaces          15332;
+        startFace       11943060;
     }
-	
     blade
     {
         type            wall;
         nFaces          14704;
-        startFace       11963056;
+        startFace       11958392;
     }
-	
     AMI1
     {
         type            cyclicAMI;
         nFaces          38390;
-        startFace       11977760;
+        startFace       11973096;
         matchTolerance  0.0001;
         neighbourPatch  AMI2;
         transform       noOrdering;
     }
-	
     AMI2
     {
         type            cyclicAMI;
         nFaces          38390;
-        startFace       12016150;
+        startFace       12011486;
         matchTolerance  0.0001;
         neighbourPatch  AMI1;
         transform       noOrdering;

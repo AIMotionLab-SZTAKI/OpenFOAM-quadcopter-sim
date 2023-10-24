@@ -20,29 +20,25 @@ internalField   uniform 0;
 
 boundaryField
 {
-	wall-downflow
-    {
-        type            zeroGradient;
-    }
 
-    wall-stator
-    {
-        type            zeroGradient;
-    }
-
-    inflow-downflow
+    inflow
     {
         type            zeroGradient;
     }
 	
-	inflow-stator
+	outflow-downflow
 	{
 		type			zeroGradient;
 	}
 	
-	wall-rotor
+	outflow-stator
 	{
 		type			zeroGradient;
+	}
+	
+	side
+	{
+		type			symmetry;
 	}
 	
 	blade
@@ -51,6 +47,15 @@ boundaryField
 		value			uniform 0;
 	}
 	
+	AMI1
+	{
+		type			cyclicAMI;
+	}
+	
+	AMI2
+	{
+		type			cyclicAMI;
+	}
 }
 
 
