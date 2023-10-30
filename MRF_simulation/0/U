@@ -26,7 +26,7 @@ boundaryField
     inflow
     {
         type            fixedValue;
-		value			uniform 15.75;
+		value			uniform (0 0 -15.75);
     }
 	
 	outflow-downflow
@@ -52,12 +52,12 @@ boundaryField
 	AMI1
 	{
 		type			cyclicAMI;
-	}
+		value			$internalField;	}
 	
 	AMI2
 	{
 		type			cyclicAMI;
-	}
+		value			$internalField;	}
 }
 
 

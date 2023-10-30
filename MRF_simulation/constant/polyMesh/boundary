@@ -18,7 +18,7 @@ FoamFile
 (
     inflow
     {
-        type            wall;
+        type            patch;
         nFaces          2692;
         startFace       11932916;
     }
@@ -36,7 +36,7 @@ FoamFile
     }
     side
     {
-        type            wall;
+        type            symmetry;
         nFaces          15332;
         startFace       11943060;
     }
@@ -51,18 +51,22 @@ FoamFile
         type            cyclicAMI;
         nFaces          38390;
         startFace       11973096;
-        matchTolerance  0.0001;
+        matchTolerance  0.00001;
         neighbourPatch  AMI2;
-        transform       noOrdering;
+        transform       rotational;
+		rotationAxis    (0 0 1);
+        rotationCentre  (0 0 0);
     }
     AMI2
     {
         type            cyclicAMI;
         nFaces          38390;
         startFace       12011486;
-        matchTolerance  0.0001;
+        matchTolerance  0.00001;
         neighbourPatch  AMI1;
-        transform       noOrdering;
+        transform       rotational;
+		rotationAxis    (0 0 1);
+        rotationCentre  (0 0 0);
     }
 )
 
