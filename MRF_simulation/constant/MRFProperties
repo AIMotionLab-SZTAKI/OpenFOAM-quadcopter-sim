@@ -17,7 +17,7 @@ FoamFile
 
 MRFImpeller
 {
-    cellZone    rotor;
+    cellZone    rotor_MRF_zone;
     active      yes;
 
     // Fixed patches (by default they 'move' with the MRF zone)
