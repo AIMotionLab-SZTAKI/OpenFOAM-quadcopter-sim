@@ -17,3 +17,9 @@ mergeMeshes -overwrite mesh_stator mesh_rotor
 checkMesh
 
 createPatch -overwrite
+
+topoSet
+
+decomposePar
+
+mpirun -np 4 simpleFoam -parallel | tee log.simple
