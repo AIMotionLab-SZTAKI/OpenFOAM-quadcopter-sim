@@ -9,11 +9,14 @@ fluentMeshToFoam MRF_stator.msh
 cd ../mesh_rotor/
 fluentMeshToFoam MRF_rotor.msh
 
+mkdir constant/polyMesh/sets
+topoSet
+
 # Merge meshes
 cd ../
 mergeMeshes -overwrite mesh_stator mesh_rotor
+cp -r mesh_stator/constant/polyMesh/ constant/
 
-# copy mesh_stator/constant/polyMesh to /constant/polyMesh
 checkMesh
 
 createPatch -overwrite

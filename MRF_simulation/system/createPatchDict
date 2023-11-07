@@ -24,12 +24,12 @@ patches
 (
     {
         //- Master side patch
-        name            AMI1;
+        name            NCC_inner;
         patchInfo
         {
-            type            cyclicAMI;
+            type            nonConformalCyclic;
             matchTolerance  0.0001;
-            neighbourPatch  AMI2;
+            neighbourPatch  NCC_outer;
             transform       noOrdering;
         }
         constructFrom patches;
@@ -38,12 +38,12 @@ patches
 
     {
         //- Slave side patch
-        name            AMI2;
+        name            NCC_outer;
         patchInfo
         {
-            type            cyclicAMI;
+            type            nonConformalCyclic;
             matchTolerance  0.0001;
-            neighbourPatch  AMI1;
+            neighbourPatch  NCC_inner;
             transform       noOrdering;
         }
         constructFrom patches;
