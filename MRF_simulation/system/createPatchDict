@@ -29,8 +29,10 @@ patches
         {
             type            nonConformalCyclic;
             matchTolerance  0.0001;
-            neighbourPatch  NCC_outer;
-            transform       noOrdering;
+			neighbourPatch  NCC_outer;
+            /*transform       rotational;
+			rotationAxis	( 0 0 1 );
+			rotationCentre	( 0 0 0 );*/
         }
         constructFrom patches;
         patches (wall-rotor);
@@ -44,7 +46,9 @@ patches
             type            nonConformalCyclic;
             matchTolerance  0.0001;
             neighbourPatch  NCC_inner;
-            transform       noOrdering;
+            /*transform       rotational;
+			rotationAxis	( 0 0 1 );
+			rotationCentre	( 0 0 0 );*/
         }
         constructFrom patches;
         patches (wall-downflow wall-stator);

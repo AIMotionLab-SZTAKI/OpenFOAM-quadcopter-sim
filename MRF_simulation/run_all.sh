@@ -15,6 +15,8 @@ topoSet
 # Merge meshes
 cd ../
 mergeMeshes -overwrite mesh_stator mesh_rotor
+
+rm -r constant/polyMesh/
 cp -r mesh_stator/constant/polyMesh/ constant/
 
 checkMesh
