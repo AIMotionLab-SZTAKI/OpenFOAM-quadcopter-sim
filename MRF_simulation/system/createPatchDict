@@ -14,41 +14,30 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Do a synchronisation of coupled points after creation of any patches.
-// Note: this does not work with points that are on multiple coupled patches
-//       with transformations (i.e. cyclics).
 pointSync false;
 
 // Patches to create.
 patches
 (
     {
-        //- Master side patch
+        // rotor-side patch
         name            NCC_inner;
         patchInfo
         {
-            type            nonConformalCyclic;
+            type            patch;
             matchTolerance  0.0001;
-			neighbourPatch  NCC_outer;
-            /*transform       rotational;
-			rotationAxis	( 0 0 1 );
-			rotationCentre	( 0 0 0 );*/
         }
         constructFrom patches;
         patches (wall-rotor);
     }
 
     {
-        //- Slave side patch
+        // stator-side patch
         name            NCC_outer;
         patchInfo
         {
-            type            nonConformalCyclic;
+            type            patch;
             matchTolerance  0.0001;
-            neighbourPatch  NCC_inner;
-            /*transform       rotational;
-			rotationAxis	( 0 0 1 );
-			rotationCentre	( 0 0 0 );*/
         }
         constructFrom patches;
         patches (wall-downflow wall-stator);

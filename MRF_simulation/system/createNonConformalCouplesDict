@@ -17,8 +17,6 @@ FoamFile
 // Whether or not to add boundary conditions for the added patch to the fields
 fields  no;
 
-// The list of non-conformal couples to be created. Each entry in this section
-// creates a single non-conformal coupling.
 nonConformalCouples
 {
     /*
@@ -36,26 +34,13 @@ nonConformalCouples
     }
     */
 	
-	rotating_fluid1
+	NCC
     {
         // Name of the two patches between which to create the coupling
-        patches     (wall-rotor wall-downflow);
+        patches     (NCC_inner NCC_outer);
 
         // Type of the transformation; "none", "rotational", or "translational"
         transform   none;
-
-        // Additional transformation settings (if any)
-    }
-	
-	rotating_fluid2
-    {
-        // Name of the two patches between which to create the coupling
-        patches     (wall-rotor wall-stator);
-
-        // Type of the transformation; "none", "rotational", or "translational"
-        transform   none;
-
-        // Additional transformation settings (if any)
     }
 
     /*// Example: Create a non-conformal couple with no transformation
@@ -85,10 +70,5 @@ nonConformalCouples
         separation      (0 2 0);
     }*/
 }
-
-// Note that in rare cases it may be appropriate to create multiple couplings
-// between the same two patches. That can be achieved with multiple entries
-// with the same patches specified. See the
-// modules/incompressibleFluid/impeller tutorial for an example of this.
 
 // ************************************************************************* //

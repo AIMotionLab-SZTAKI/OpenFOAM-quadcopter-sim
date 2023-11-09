@@ -14,11 +14,12 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-7
+11
 (
     inflow
     {
-        type            patch;
+        type            wall;
+        inGroups        List<word> 1(wall);
         nFaces          2692;
         startFace       11932916;
     }
@@ -36,37 +37,67 @@ FoamFile
     }
     side
     {
-        type            symmetry;
+        type            wall;
+        inGroups        List<word> 1(wall);
         nFaces          15332;
         startFace       11943060;
     }
     blade
     {
         type            wall;
+        inGroups        List<word> 1(wall);
         nFaces          14704;
         startFace       11958392;
     }
-    AMI1
+    NCC_inner
     {
-        type            cyclicAMI;
+        type            patch;
         nFaces          38390;
         startFace       11973096;
-        matchTolerance  0.00001;
-        neighbourPatch  AMI2;
-        transform       rotational;
-		rotationAxis    (0 0 1);
-        rotationCentre  (0 0 0);
     }
-    AMI2
+    NCC_outer
     {
-        type            cyclicAMI;
+        type            patch;
         nFaces          38390;
         startFace       12011486;
-        matchTolerance  0.00001;
-        neighbourPatch  AMI1;
-        transform       rotational;
-		rotationAxis    (0 0 1);
-        rotationCentre  (0 0 0);
+    }
+    NCC_on_NCC_inner
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       12049876;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_on_NCC_outer;
+        transformType   none;
+        originalPatch   NCC_inner;
+    }
+    NCC_on_NCC_outer
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       12049876;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_on_NCC_inner;
+        transformType   none;
+        originalPatch   NCC_outer;
+    }
+    nonConformalError_on_NCC_inner
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       12049876;
+        originalPatch   NCC_inner;
+    }
+    nonConformalError_on_NCC_outer
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       12049876;
+        originalPatch   NCC_outer;
     }
 )
 
