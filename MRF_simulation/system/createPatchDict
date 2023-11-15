@@ -20,27 +20,15 @@ pointSync false;
 patches
 (
     {
-        // rotor-side patch
-        name            NCC_inner;
+        // create combined outflow
+        name            outflow;
         patchInfo
         {
             type            patch;
             matchTolerance  0.0001;
         }
         constructFrom patches;
-        patches (wall-rotor);
-    }
-
-    {
-        // stator-side patch
-        name            NCC_outer;
-        patchInfo
-        {
-            type            patch;
-            matchTolerance  0.0001;
-        }
-        constructFrom patches;
-        patches (wall-downflow wall-stator);
+        patches (outflow-downflow outflow-stator);
     }
 	
 );

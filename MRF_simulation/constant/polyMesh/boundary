@@ -14,90 +14,190 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-11
+22
 (
     inflow
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          2692;
-        startFace       11932916;
-    }
-    outflow-downflow
-    {
-        type            patch;
-        nFaces          2332;
-        startFace       11935608;
-    }
-    outflow-stator
-    {
-        type            patch;
-        nFaces          5120;
-        startFace       11937940;
+        nFaces          2670;
+        startFace       13489132;
     }
     side
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          15332;
-        startFace       11943060;
+        nFaces          15290;
+        startFace       13491802;
+    }
+    stator-upper
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          14992;
+        startFace       13507092;
+    }
+    stator-lower
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          2332;
+        startFace       13522084;
+    }
+    stator-side
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          21124;
+        startFace       13524416;
     }
     blade
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          14704;
-        startFace       11958392;
+        nFaces          11626;
+        startFace       13545540;
     }
-    NCC_inner
+    rotor-upper
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          14992;
+        startFace       13557166;
+    }
+    rotor-lower
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          2332;
+        startFace       13572158;
+    }
+    rotor-side
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          21124;
+        startFace       13574490;
+    }
+    outflow
     {
         type            patch;
-        nFaces          38390;
-        startFace       11973096;
+        nFaces          7486;
+        startFace       13595614;
     }
-    NCC_outer
-    {
-        type            patch;
-        nFaces          38390;
-        startFace       12011486;
-    }
-    NCC_on_NCC_inner
+    NCC_upper_on_rotor-upper
     {
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       12049876;
+        startFace       13603100;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_on_NCC_outer;
+        neighbourPatch  NCC_upper_on_stator-upper;
         transformType   none;
-        originalPatch   NCC_inner;
+        originalPatch   rotor-upper;
     }
-    NCC_on_NCC_outer
+    NCC_upper_on_stator-upper
     {
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       12049876;
+        startFace       13603100;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_on_NCC_inner;
+        neighbourPatch  NCC_upper_on_rotor-upper;
         transformType   none;
-        originalPatch   NCC_outer;
+        originalPatch   stator-upper;
     }
-    nonConformalError_on_NCC_inner
+    NCC_side_on_rotor-side
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       13603100;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_side_on_stator-side;
+        transformType   none;
+        originalPatch   rotor-side;
+    }
+    NCC_side_on_stator-side
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       13603100;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_side_on_rotor-side;
+        transformType   none;
+        originalPatch   stator-side;
+    }
+    NCC_lower_on_rotor-lower
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       13603100;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_lower_on_stator-lower;
+        transformType   none;
+        originalPatch   rotor-lower;
+    }
+    NCC_lower_on_stator-lower
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       13603100;
+        matchTolerance  0.0001;
+        neighbourPatch  NCC_lower_on_rotor-lower;
+        transformType   none;
+        originalPatch   stator-lower;
+    }
+    nonConformalError_on_rotor-lower
     {
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       12049876;
-        originalPatch   NCC_inner;
+        startFace       13603100;
+        originalPatch   rotor-lower;
     }
-    nonConformalError_on_NCC_outer
+    nonConformalError_on_rotor-upper
     {
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       12049876;
-        originalPatch   NCC_outer;
+        startFace       13603100;
+        originalPatch   rotor-upper;
+    }
+    nonConformalError_on_rotor-side
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       13603100;
+        originalPatch   rotor-side;
+    }
+    nonConformalError_on_stator-lower
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       13603100;
+        originalPatch   stator-lower;
+    }
+    nonConformalError_on_stator-side
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       13603100;
+        originalPatch   stator-side;
+    }
+    nonConformalError_on_stator-upper
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       13603100;
+        originalPatch   stator-upper;
     }
 )
 

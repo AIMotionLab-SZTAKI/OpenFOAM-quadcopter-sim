@@ -19,56 +19,34 @@ fields  no;
 
 nonConformalCouples
 {
-    /*
-    // Unique name used to generate the name of the coupled patches
-    <name>
+	
+	NCC_upper
     {
         // Name of the two patches between which to create the coupling
-        patches     (<patch1> <patch2>);
+        patches     (rotor-upper stator-upper);
 
         // Type of the transformation; "none", "rotational", or "translational"
-        transform   <transformType>;
-
-        // Additional transformation settings (if any)
-        ...
+        transform   none;
     }
-    */
 	
-	NCC
+	NCC_side
     {
         // Name of the two patches between which to create the coupling
-        patches     (NCC_inner NCC_outer);
+        patches     (rotor-side stator-side);
+
+        // Type of the transformation; "none", "rotational", or "translational"
+        transform   none;
+    }
+	
+	NCC_lower
+    {
+        // Name of the two patches between which to create the coupling
+        patches     (rotor-lower stator-lower);
 
         // Type of the transformation; "none", "rotational", or "translational"
         transform   none;
     }
 
-    /*// Example: Create a non-conformal couple with no transformation
-    nonConformalCouple_none
-    {
-        patches         (nonCouple1 nonCouple2);
-        transform       none;
-    }
-
-    // Example: Create a non-conformal couple with a 30 degree rotational
-    // transformation
-    nonConformalCouple_30deg
-    {
-        patches         (nonCoupleBehind nonCoupleAhead);
-        transform       rotational;
-        rotationAxis    (-1 0 0);
-        rotationCentre  (0 0 0);
-        rotationAngle   30;
-    }
-
-    // Example: Create a non-conformal couple with a 2 metre translational
-    // transformation
-    nonConformalCouple_2m
-    {
-        patches         (nonCoupleBack nonCoupleFront);
-        transform       translational;
-        separation      (0 2 0);
-    }*/
 }
 
 // ************************************************************************* //
