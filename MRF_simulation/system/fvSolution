@@ -55,10 +55,19 @@ solvers
         relTol          0.1;
     }
 	
+	MeshPhi
+	{
+		solver			smoothSolver;
+		smoother		symGaussSeidel;
+		tolerance		1e-2;
+		relTol			0;
+	}
+	
 }
 
 SIMPLE
 {
+	correctMeshPhi				yes;
     nNonOrthogonalCorrectors 	0;
 	pRefCell					0;
 	pRefValue					0;

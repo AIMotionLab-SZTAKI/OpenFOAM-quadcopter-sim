@@ -15,17 +15,19 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-MRFImpeller
+MRF1
 {
     cellZone    rotor_MRF_zone;
-    active      yes;
+    active      true;
 
     // Fixed patches (by default they 'move' with the MRF zone)
-    nonRotatingPatches (inflow outflow side);
+    nonRotatingPatches ();
 
-    origin    (0.0 0.0 0.0);
+    origin    (0 0 0);
     axis      (0 0 1);
-    omega     constant -1200; // rad/s
+	
+    omega     -1200; // rad/s
+	//rpm			60;
 }
 
 // ************************************************************************* //
