@@ -21,7 +21,7 @@ MRFImpeller
     active      yes;
 
     // Fixed patches (by default they 'move' with the MRF zone)
-    nonRotatingPatches (inflow outflow-downflow outflow-stator side);
+    nonRotatingPatches (inflow outflow side);
 
     origin    (0.0 0.0 0.0);
     axis      (0 0 1);

@@ -27,12 +27,7 @@ boundaryField
         type            zeroGradient;
     }
 	
-	outflow-downflow
-	{
-		type			zeroGradient;
-	}
-	
-	outflow-stator
+	outflow
 	{
 		type			zeroGradient;
 	}
@@ -48,17 +43,11 @@ boundaryField
 		value			uniform 0;
 	}
 	
-	AMI1
+	nonConformalPatches
 	{
-		type			cyclicAMI;
-		value			$internalField;
+		type			zeroGradient;
 	}
-	
-	AMI2
-	{
-		type			cyclicAMI;
-		value			$internalField;
-	}
+
 }
 
 

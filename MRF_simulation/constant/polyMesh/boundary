@@ -18,79 +18,76 @@ FoamFile
 (
     inflow
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          2670;
-        startFace       13489132;
+        type            patch;
+        nFaces          2588;
+        startFace       13500195;
     }
     side
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          15290;
-        startFace       13491802;
+        type            symmetry;
+        nFaces          15242;
+        startFace       13502783;
     }
     stator-upper
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          14992;
-        startFace       13507092;
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
+        nFaces          14776;
+        startFace       13518025;
     }
     stator-lower
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
         nFaces          2332;
-        startFace       13522084;
+        startFace       13532801;
     }
     stator-side
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          21124;
-        startFace       13524416;
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
+        nFaces          21110;
+        startFace       13535133;
     }
     blade
     {
         type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          11626;
-        startFace       13545540;
+        nFaces          11594;
+        startFace       13556243;
     }
     rotor-upper
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          14992;
-        startFace       13557166;
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
+        nFaces          14776;
+        startFace       13567837;
     }
     rotor-lower
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
         nFaces          2332;
-        startFace       13572158;
+        startFace       13582613;
     }
     rotor-side
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          21124;
-        startFace       13574490;
+        type            patch;
+        inGroups        List<word> 1(nonConformalPatches);
+        nFaces          21110;
+        startFace       13584945;
     }
     outflow
     {
         type            patch;
-        nFaces          7486;
-        startFace       13595614;
+        nFaces          7390;
+        startFace       13606055;
     }
     NCC_upper_on_rotor-upper
     {
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_upper_on_stator-upper;
         transformType   none;
@@ -101,7 +98,7 @@ FoamFile
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_upper_on_rotor-upper;
         transformType   none;
@@ -112,7 +109,7 @@ FoamFile
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_side_on_stator-side;
         transformType   none;
@@ -123,7 +120,7 @@ FoamFile
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_side_on_rotor-side;
         transformType   none;
@@ -134,7 +131,7 @@ FoamFile
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_lower_on_stator-lower;
         transformType   none;
@@ -145,7 +142,7 @@ FoamFile
         type            nonConformalCyclic;
         inGroups        List<word> 1(nonConformalCyclic);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         matchTolerance  0.0001;
         neighbourPatch  NCC_lower_on_rotor-lower;
         transformType   none;
@@ -156,7 +153,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   rotor-lower;
     }
     nonConformalError_on_rotor-upper
@@ -164,7 +161,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   rotor-upper;
     }
     nonConformalError_on_rotor-side
@@ -172,7 +169,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   rotor-side;
     }
     nonConformalError_on_stator-lower
@@ -180,7 +177,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   stator-lower;
     }
     nonConformalError_on_stator-side
@@ -188,7 +185,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   stator-side;
     }
     nonConformalError_on_stator-upper
@@ -196,7 +193,7 @@ FoamFile
         type            nonConformalError;
         inGroups        List<word> 1(nonConformalError);
         nFaces          0;
-        startFace       13603100;
+        startFace       13613445;
         originalPatch   stator-upper;
     }
 )

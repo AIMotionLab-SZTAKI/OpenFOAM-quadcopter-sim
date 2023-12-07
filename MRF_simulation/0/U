@@ -22,6 +22,7 @@ internalField   uniform (0 0 0);
 
 boundaryField
 {
+	#includeEtc "caseDicts/setConstraintTypes"
 
     inflow
     {
@@ -29,12 +30,7 @@ boundaryField
 		value			uniform (0 0 -15.75);
     }
 	
-	outflow-downflow
-	{
-		type			zeroGradient;
-	}
-	
-	outflow-stator
+	outflow
 	{
 		type			zeroGradient;
 	}
@@ -49,17 +45,11 @@ boundaryField
 		type			MRFslip;
 	}
 	
-	AMI1
+	nonConformalPatches
 	{
-		type			cyclicAMI;
-		value			$internalField;
+		type			zeroGradient;
 	}
 	
-	AMI2
-	{
-		type			cyclicAMI;
-		value			$internalField;
-	}
 }
 
 
