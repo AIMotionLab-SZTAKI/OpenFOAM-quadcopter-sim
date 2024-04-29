@@ -28,7 +28,7 @@ solvers
 		mergeLevels				1;
     }
 
-    U
+     "(U|k|epsilon)"
     {
         solver			smoothSolver;
 		smoother		GaussSeidel;
@@ -36,38 +36,11 @@ solvers
 		tolerance		1e-5;
 		relTol			0.1;
     }
-
-    k
-    {
-        solver			smoothSolver;
-        smoother        GaussSeidel;
-		nSweeps			2;
-        tolerance       1e-5;
-        relTol          0.1;
-    }
-
-    omega
-    {
-        solver          smoothSolver;
-        smoother        GaussSeidel;
-		nSweeps			2;
-        tolerance       1e-5;
-        relTol          0.1;
-    }
-	
-	MeshPhi
-	{
-		solver			smoothSolver;
-		smoother		symGaussSeidel;
-		tolerance		1e-2;
-		relTol			0;
-	}
 	
 }
 
 SIMPLE
 {
-	correctMeshPhi				yes;
     nNonOrthogonalCorrectors 	0;
 	pRefCell					0;
 	pRefValue					0;
@@ -75,7 +48,7 @@ SIMPLE
 	{
 		p						1e-5;
 		U						1e-5;
-		"(k|omega)"				1e-5;
+		"(k|epsilon)"			1e-5;
 	}
 }
 
@@ -83,11 +56,11 @@ relaxationFactors
 {
 	fields
 	{
-		p			0.3;
+		p			0.5;
 	}
 	equations
 	{
-		U			0.5;
+		U			0.3;
 		k			0.3;
 		omega		0.3;
 	}

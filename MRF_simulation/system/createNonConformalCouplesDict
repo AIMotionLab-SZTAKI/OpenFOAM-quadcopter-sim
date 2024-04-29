@@ -20,10 +20,10 @@ fields  no;
 nonConformalCouples
 {
 	
-	NCC_upper
+	NCC_top
     {
         // Name of the two patches between which to create the coupling
-        patches     (rotor-upper stator-upper);
+        patches     (nonConfTop_rotor nonConfTop_stator);
 
         // Type of the transformation; "none", "rotational", or "translational"
         transform   none;
@@ -32,16 +32,16 @@ nonConformalCouples
 	NCC_side
     {
         // Name of the two patches between which to create the coupling
-        patches     (rotor-side stator-side);
+        patches     (nonConfSide_rotor nonConfSide_stator);
 
         // Type of the transformation; "none", "rotational", or "translational"
         transform   none;
     }
 	
-	NCC_lower
+	NCC_bottom
     {
         // Name of the two patches between which to create the coupling
-        patches     (rotor-lower stator-lower);
+        patches     (nonConfBottom_rotor nonConfBottom_stator);
 
         // Type of the transformation; "none", "rotational", or "translational"
         transform   none;

@@ -16,11 +16,10 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 0.06;
+internalField   uniform 0.6;
 
 boundaryField
 {
-	#includeEtc "caseDicts/setConstraintTypes"
 
     inflow
     {
@@ -31,23 +30,54 @@ boundaryField
 	
 	outflow
 	{
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
 	}
 	
-	side
+	sidee
 	{
 		type			symmetry;
 	}
 	
 	blade
 	{
-		type			zeroGradient;
+        type            kqRWallFunction;
+        value           $internalField;
 	}
 	
-	nonConformalPatches
-	{
-		type			zeroGradient;
-	}
+    cycTop_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycSide_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycBot_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycTop_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycSide_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycBot_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+
+
 	
 }
 

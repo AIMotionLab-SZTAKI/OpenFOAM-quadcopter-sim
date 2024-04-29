@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  11
+    \\  /    A nd           | Version:  10
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -14,187 +14,99 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-22
+10
 (
-    inflow
-    {
-        type            patch;
-        nFaces          2588;
-        startFace       13500195;
-    }
-    side
-    {
-        type            symmetry;
-        nFaces          15242;
-        startFace       13502783;
-    }
-    stator-upper
-    {
-        type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          14776;
-        startFace       13518025;
-    }
-    stator-lower
-    {
-        type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          2332;
-        startFace       13532801;
-    }
-    stator-side
-    {
-        type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          21110;
-        startFace       13535133;
-    }
     blade
     {
         type            wall;
-        nFaces          11594;
-        startFace       13556243;
+        inGroups        List<word> 1(wall);
+        nFaces          783456;
+        startFace       14269482;
     }
-    rotor-upper
+    inflow
     {
         type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          14776;
-        startFace       13567837;
+        nFaces          31040;
+        startFace       15052938;
     }
-    rotor-lower
+    sidee
     {
-        type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          2332;
-        startFace       13582613;
-    }
-    rotor-side
-    {
-        type            patch;
-        inGroups        List<word> 1(nonConformalPatches);
-        nFaces          21110;
-        startFace       13584945;
+        type            symmetry;
+        inGroups        List<word> 1(symmetry);
+        nFaces          142128;
+        startFace       15083978;
     }
     outflow
     {
         type            patch;
-        nFaces          7390;
-        startFace       13606055;
+        nFaces          31032;
+        startFace       15226106;
     }
-    NCC_upper_on_rotor-upper
+    cycTop_rot
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          18106;
+        startFace       15257138;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_upper_on_stator-upper;
+        neighbourPatch  cycTop_stat;
         transformType   none;
-        originalPatch   rotor-upper;
+        method          faceAreaWeightAMI;
     }
-    NCC_upper_on_stator-upper
+    cycTop_stat
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          4590;
+        startFace       15275244;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_upper_on_rotor-upper;
+        neighbourPatch  cycTop_rot;
         transformType   none;
-        originalPatch   stator-upper;
+        method          faceAreaWeightAMI;
     }
-    NCC_side_on_rotor-side
+    cycSide_rot
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          21832;
+        startFace       15279834;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_side_on_stator-side;
+        neighbourPatch  cycSide_stat;
         transformType   none;
-        originalPatch   rotor-side;
+        method          faceAreaWeightAMI;
     }
-    NCC_side_on_stator-side
+    cycSide_stat
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          5442;
+        startFace       15301666;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_side_on_rotor-side;
+        neighbourPatch  cycSide_rot;
         transformType   none;
-        originalPatch   stator-side;
+        method          faceAreaWeightAMI;
     }
-    NCC_lower_on_rotor-lower
+    cycBot_rot
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          18130;
+        startFace       15307108;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_lower_on_stator-lower;
+        neighbourPatch  cycBot_stat;
         transformType   none;
-        originalPatch   rotor-lower;
+        method          faceAreaWeightAMI;
     }
-    NCC_lower_on_stator-lower
+    cycBot_stat
     {
-        type            nonConformalCyclic;
-        inGroups        List<word> 1(nonConformalCyclic);
-        nFaces          0;
-        startFace       13613445;
+        type            cyclicAMI;
+        inGroups        List<word> 1(cyclicAMI);
+        nFaces          4458;
+        startFace       15325238;
         matchTolerance  0.0001;
-        neighbourPatch  NCC_lower_on_rotor-lower;
+        neighbourPatch  cycBot_rot;
         transformType   none;
-        originalPatch   stator-lower;
-    }
-    nonConformalError_on_rotor-lower
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   rotor-lower;
-    }
-    nonConformalError_on_rotor-upper
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   rotor-upper;
-    }
-    nonConformalError_on_rotor-side
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   rotor-side;
-    }
-    nonConformalError_on_stator-lower
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   stator-lower;
-    }
-    nonConformalError_on_stator-side
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   stator-side;
-    }
-    nonConformalError_on_stator-upper
-    {
-        type            nonConformalError;
-        inGroups        List<word> 1(nonConformalError);
-        nFaces          0;
-        startFace       13613445;
-        originalPatch   stator-upper;
+        method          faceAreaWeightAMI;
     }
 )
 

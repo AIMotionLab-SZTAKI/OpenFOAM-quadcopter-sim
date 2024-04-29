@@ -25,7 +25,7 @@ boundaryField
     inflow
     {
         type            fixedValue;
-		value			uniform (0 0 -15.75);
+		value			uniform (0 0 -5);
     }
 
 	outflow
@@ -40,39 +40,9 @@ boundaryField
 
 	blade
 	{
-		type			noSlip;
+		type			movingWallVelocity;
+		value			uniform (0 0 0);
 	}
-    cycTop_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycSide_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycBot_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycTop_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycSide_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycBot_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-
 
 }
 

@@ -9,46 +9,49 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      epsilon;
+    class       dictionary;
+    object      fvSchemes;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -3 0 0 0 0];
-
-internalField   uniform 0.0495;
-
-boundaryField
+ddtSchemes
 {
-	#includeEtc "caseDicts/setConstraintTypes"
-	
-    inflow
-    {
-        type            fixedValue;
-		value			uniform 0.05;  //?????
-    }
-	
-	outflow
-	{
-		type			zeroGradient;
-	}
-	
-	side
-	{
-		type			symmetry;
-	}
-	
-	blade
-	{
-		type			omegaWallFunction;
-		value			$internalField;
-	}
+    default         steadyState;
+}
 
-	nonConformalPatches
-	{
-		type			zeroGradient;
-	}
-	
+gradSchemes
+{
+	default			Gauss linear;
+}
+
+divSchemes
+{
+	default								none;
+    div(phi,U)      bounded Gauss linearUpwind unlimited;
+    div(phi,k)      bounded Gauss linearUpwind limited 1;
+    div(phi,epsilon) bounded Gauss linearUpwind limited 1;
+	div((nuEff*dev2(T(grad(U))))) 		Gauss linear;
+}
+
+laplacianSchemes
+{
+	default			Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         limited corrected 0.33;
+}
+
+wallDist
+{
+	method			meshWave;
+	nRequired		false;
 }
 
 

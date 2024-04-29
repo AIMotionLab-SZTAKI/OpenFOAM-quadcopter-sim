@@ -10,49 +10,60 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      fvSchemes;
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ddtSchemes
+solvers
 {
-    default         steadyState;
+    p
+    {
+        solver					GAMG;
+        tolerance       		1e-5;
+        relTol          		0.05;
+		smoother				GaussSeidel;
+		nCellsInCoarsestLevel	1400;
+		cacheAgglomeration		true;
+		agglomerator			faceAreaPair;
+		mergeLevels				1;
+    }
+
+     "(U|k|epsilon)"
+    {
+        solver			smoothSolver;
+		smoother		GaussSeidel;
+		nSweeps			2;
+		tolerance		1e-5;
+		relTol			0.1;
+    }
+	
 }
 
-gradSchemes
+SIMPLE
 {
-	default			Gauss linear;
+    nNonOrthogonalCorrectors 	0;
+	pRefCell					0;
+	pRefValue					0;
+	residualControl
+	{
+		p						1e-6;
+		U						1e-6;
+		"(k|epsilon)"			1e-6;
+	}
 }
 
-divSchemes
+relaxationFactors
 {
-	default								none;
-	div(phi,U)							bounded Gauss linearUpwind unlimited;
-	div(phi,k)							bounded Gauss linearUpwind limited 1;
-	div(phi,epsilon)					bounded Gauss linearUpwind limited 1;
-	div((nuEff*dev2(T(grad(U))))) 		Gauss linear;
+	fields
+	{
+		p			0.5;
+	}
+	equations
+	{
+		U			0.3;
+		k			0.3;
+		epsilon			0.3;
+	}
 }
-
-laplacianSchemes
-{
-	default			Gauss linear corrected;
-}
-
-interpolationSchemes
-{
-    default         linear;
-}
-
-snGradSchemes
-{
-    default         limited corrected 0.33;
-}
-
-wallDist
-{
-	method			meshWave;
-	nRequired		false;
-}
-
 
 // ************************************************************************* //

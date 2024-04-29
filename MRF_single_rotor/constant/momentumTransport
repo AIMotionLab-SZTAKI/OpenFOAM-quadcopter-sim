@@ -2,23 +2,28 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  10
+    \\  /    A nd           | Version:  11
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
-    format      binary;
-    class       faceSet;
-    location    "constant/polyMesh/sets";
-    object      skewFaces;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      momentumTransport;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+simulationType  RAS;
 
-2
-(
-15305034 
-15306124 
-)
+RAS
+{
+    model           kEpsilon; //kOmegaSST
+
+    turbulence      off;
+
+    printCoeffs     on;
+}
+
 
 // ************************************************************************* //

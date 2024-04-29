@@ -19,6 +19,33 @@ pointSync false;
 // Patches to create.
 patches
 (
+	//inlet
+    {
+        // create combined inflow
+        name            inflow;
+        patchInfo
+        {
+            type            patch;
+            matchTolerance  0.0001;
+        }
+        constructFrom patches;
+        patches (inlet);
+    }
+	
+	//side
+    {
+        // create symmetry side
+        name            sidee;
+        patchInfo
+        {
+            type            symmetry;
+            matchTolerance  0.0001;
+        }
+        constructFrom patches;
+        patches (side);
+    }
+
+	//outflow
     {
         // create combined outflow
         name            outflow;
@@ -28,10 +55,99 @@ patches
             matchTolerance  0.0001;
         }
         constructFrom patches;
-        patches (outflow-downflow outflow-stator);
+        patches (outlet);
+    }
+
+	//cyc_top_r
+    {
+        // create rotor cyclic top
+        name            cycTop_rot;
+        patchInfo
+        {
+            type            cyclicAMI;
+			neighbourPatch  cycTop_stat;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfTop_rotor);
+    }
+
+	//cyc_top_s
+    {
+        // create stator cyclic top
+        name            cycTop_stat;
+        patchInfo
+        {
+            type            cyclicAMI;
+            neighbourPatch  cycTop_rot;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfTop_stator);
+    }
+
+	//cyc_side_r
+    {
+        // create rotor cyclic side
+        name            cycSide_rot;
+        patchInfo
+        {
+            type            cyclicAMI;
+            neighbourPatch  cycSide_stat;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfSide_rotor);
     }
 	
-);
+	//cyc_side_s
+    {
+        // create stator cyclic side
+        name            cycSide_stat;
+        patchInfo
+        {
+            type            cyclicAMI;
+            neighbourPatch  cycSide_rot;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfSide_stator);
+    }
+	
+	//cyc_bottom_r
+    {
+        // create rotor cyclic bottom
+        name            cycBot_rot;
+        patchInfo
+        {
+            type            cyclicAMI;
+            neighbourPatch  cycBot_stat;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfBottom_rotor);
+    }
 
+	//cyc_bottom_s
+    {
+        // create stator cyclic bottom
+        name            cycBot_stat;
+        patchInfo
+        {
+            type            cyclicAMI;
+            neighbourPatch  cycBot_rot;
+            matchTolerance  0.0001;
+			transform       none;
+        }
+        constructFrom patches;
+        patches (nonConfBottom_stator);
+    }
+
+);
 
 // ************************************************************************* //

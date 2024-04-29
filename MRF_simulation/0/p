@@ -20,7 +20,6 @@ internalField   uniform 0;
 
 boundaryField
 {
-	#includeEtc "caseDicts/setConstraintTypes"
 
     inflow
     {
@@ -33,7 +32,7 @@ boundaryField
 		value			uniform 0;
 	}
 	
-	side
+	sidee
 	{
 		type			symmetry;
 	}
@@ -42,12 +41,40 @@ boundaryField
 	{
 		type			zeroGradient;
 	}
-	
-	nonConformalPatches
-	{
-		type			zeroGradient;
-	}
-	
+
+    cycTop_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycSide_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycBot_rot
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycTop_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycSide_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+    cycBot_stat
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+
+
+
 }
 
 

@@ -1,0 +1,12 @@
+MRF_simulation/*
+MRF_simulation_multiregion/*
+MRF_simulation_vBendeguz/*
+pimpleTestSim/*
+MRF_single_rotor/mesh/constant/*
+MRF_single_rotor/2000/*
+Post_process/.idea
+Post_process/venv
+Post_process/log.simpleFoam
+Post_process/*.csv
+*.msh
+*.foam

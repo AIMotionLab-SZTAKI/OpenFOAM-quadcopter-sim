@@ -5,22 +5,45 @@
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
-
-forces
+FoamFile
 {
-    type          forces;
-    libs          (" libforces .so");
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-    writeControl  timeStep;
-    timeInterval  1;
+dimensions      [0 2 -2 0 0 0 0];
 
-    patches       (blade);
-    rho           rhoInf;     // Indicates incompressible
-    log           true;
-    rhoInf        1.205;          // Redundant for incompressible
+internalField   uniform 0;
 
-    CofR          (0 0 0);    // Rotation around centre line of propeller
-    pitchAxis     (0 0 1);
+#includeEtc "caseDicts/setConstraintTypes"
+
+boundaryField
+{
+
+    inflow
+    {
+        type            zeroGradient;
+    }
+	
+	outflow
+	{
+        type            fixedValue;
+		value			uniform 0;
+	}
+	
+	sidee
+	{
+		type			symmetry;
+	}
+	
+	blade
+	{
+		type			zeroGradient;
+	}
+
 }
 
 

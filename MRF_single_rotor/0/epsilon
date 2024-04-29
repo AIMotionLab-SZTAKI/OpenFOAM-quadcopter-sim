@@ -10,70 +10,42 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      nut;
+    object      epsilon;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -1 0 0 0 0];
+dimensions      [0 2 -3 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 0.5;
 
 boundaryField
 {
+	#includeEtc "caseDicts/setConstraintTypes"
 
     inflow
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
     }
-	
+
 	outflow
 	{
-		type			zeroGradient;
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
 	}
-	
+
 	sidee
 	{
 		type			symmetry;
 	}
-	
+
 	blade
 	{
-		type			nutkWallFunction;
-		value			uniform 0;
+		type			epsilonWallFunction;
+		value			$internalField;
 	}
-	
-    cycTop_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycSide_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycBot_rot
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycTop_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycSide_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-    cycBot_stat
-    {
-        type            cyclicAMI;
-        value           $internalField;
-    }
-
-
 
 }
 
