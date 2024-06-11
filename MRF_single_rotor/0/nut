@@ -16,20 +16,33 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 3.16e-6;
 
 boundaryField
 {
 
-    inflow
+    /*inflow
     {
-        type            zeroGradient;
-    }
-	
+        type            calculated;
+	value		uniform 3.16e-6;
+    }*/
+
+	inflow
+	{
+		type			freestream;
+		freestreamValue		$internalField;
+	}
+
 	outflow
 	{
+		type			freestream;
+		freestreamValue		$internalField;
+	}	
+	
+	/*outflow
+	{
 		type			zeroGradient;
-	}
+	}*/
 	
 	sidee
 	{
@@ -38,7 +51,7 @@ boundaryField
 	
 	blade
 	{
-		type			nutkWallFunction;
+		type			nutUSpaldingWallFunction; //nutkWallFunction;
 		value			uniform 0;
 	}
 	

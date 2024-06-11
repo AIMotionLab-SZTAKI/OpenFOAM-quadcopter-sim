@@ -10,29 +10,38 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      k;
+    object      nut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0.6;
+internalField   uniform 4.5e-5;
 
 boundaryField
 {
 
-    inflow
+    /*inflow
     {
-        type            turbulentIntensityKineticEnergyInlet;
-		intensity		0.05;		// 5% turbulence
-		value			uniform 1;	// placeholder	
+        type            fixedValue;
+	value		uniform 4.5e-5;
     }
 	
 	outflow
 	{
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+		type			zeroGradient;
+	}*/
+
+	inflow
+	{
+		type			freestream;
+		freestreamValue		$internalField;
+	}
+
+	outflow
+	{
+		type			freestream;
+		freestreamValue		$internalField;
 	}
 	
 	sidee
@@ -42,11 +51,11 @@ boundaryField
 	
 	blade
 	{
-        type            kqRWallFunction;
-        value           $internalField;
+		type			fixedValue;
+		value			uniform 0;
 	}
 	
-    }
+}
 
 
 // ************************************************************************* //

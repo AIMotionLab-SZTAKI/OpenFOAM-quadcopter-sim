@@ -18,19 +18,23 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 0 0);
+internalField   uniform (0 0 -5);
 
 boundaryField
 {
     inflow
     {
-        type            fixedValue;
-		value			uniform (0 0 -5);
+	type            freestreamVelocity;
+        freestreamValue $internalField;
+        //type            fixedValue;
+	//	value			uniform (0 0 -5);
     }
 
 	outflow
 	{
-		type			zeroGradient;
+		type            freestreamVelocity;
+        	freestreamValue $internalField;
+		//type			zeroGradient;
 	}
 
 	sidee
@@ -40,8 +44,7 @@ boundaryField
 
 	blade
 	{
-		type			movingWallVelocity;
-		value			uniform (0 0 0);
+		type			noSlip;
 	}
 
 }
