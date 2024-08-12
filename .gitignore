@@ -9,7 +9,7 @@ MRF_single_rotor/mesh/constant/*
 MRF_single_rotor/2000/*
 Post_process/.idea
 Post_process/venv
-Post_process/log.simpleFoam
-Post_process/*.csv
+Post_process/log_data/*
+Post_process/raw_data/*
+Post_process/processed_data/*
 *.msh
-*.foam
