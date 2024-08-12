@@ -20,7 +20,7 @@ RAS
 {
     model           SpalartAllmaras;
 
-    turbulence      on;
+    turbulence      off;
 
     printCoeffs     on;
 }

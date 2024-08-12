@@ -20,27 +20,27 @@ FoamFile
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          670289;
-        startFace       15331950;
+        nFaces          76582;
+        startFace       11198699;
     }
     inflow
     {
         type            patch;
-        nFaces          17476;
-        startFace       16002239;
+        nFaces          64752;
+        startFace       11275281;
     }
     sidee
     {
         type            symmetry;
         inGroups        List<word> 1(symmetry);
-        nFaces          80136;
-        startFace       16019715;
+        nFaces          256592;
+        startFace       11340033;
     }
     outflow
     {
         type            patch;
-        nFaces          17588;
-        startFace       16099851;
+        nFaces          64752;
+        startFace       11596625;
     }
 )
 

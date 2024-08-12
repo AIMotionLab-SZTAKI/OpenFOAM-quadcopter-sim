@@ -14,31 +14,31 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 
-inlet
+inlet_large
 {
     surfaces
     (
-        "inlet.stl"
+        "inlet_large.stl"
     );
 
     includedAngle   150;
 }
 
-outlet
+outlet_large
 {
     surfaces
     (
-        "outlet.stl"
+        "outlet_large.stl"
     );
 
     includedAngle   150;
 }
 
-side
+side_large
 {
     surfaces
     (
-        "side.stl"
+        "side_large.stl"
     );
 
     includedAngle   150;

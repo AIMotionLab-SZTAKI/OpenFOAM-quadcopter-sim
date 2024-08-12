@@ -25,17 +25,14 @@ boundaryField
 
     	inflow
     	{
-		type            freestreamPressure;
+			type            freestreamPressure;
         	freestreamValue $internalField;
-        	//type            zeroGradient;
     	}
 	
 	outflow
 	{
 		type            freestreamPressure;
-        	freestreamValue $internalField;
-        	//type            fixedValue;
-		//value			uniform 0;
+        freestreamValue $internalField;
 	}
 	
 	sidee

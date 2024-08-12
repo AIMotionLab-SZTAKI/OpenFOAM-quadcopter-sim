@@ -23,17 +23,17 @@ geometry
     inlet
 	{
 		type triSurfaceMesh;
-		file "inlet.stl";
+		file "inlet_large.stl";
 	}
     outlet
 	{
 		type triSurfaceMesh;
-		file "outlet.stl";
+		file "outlet_large.stl";
 	}
     side
 	{
 		type triSurfaceMesh;
-		file "side.stl";
+		file "side_large.stl";
 	}
 	blade
 	{
@@ -53,27 +53,27 @@ castellatedMeshControls
 {
     maxLocalCells 100000;
     maxGlobalCells 8000000;
-    minRefinementCells 0;
+    minRefinementCells 5;
     maxLoadUnbalance 0.10;
     nCellsBetweenLevels 2;
 
     features
     (
-        { file "inlet.eMesh"; level 0;}
-        { file "outlet.eMesh"; level 0;}
-        { file "side.eMesh"; level 0;}
-		{ file "blade.eMesh"; level 6;}
+        { file "inlet_large.eMesh"; level 1;}
+        { file "outlet_large.eMesh"; level 1;}
+        { file "side_large.eMesh"; level 1;}
+		{ file "blade.eMesh"; level 4;}
     );
 
     refinementSurfaces
     {
-        inlet{ level (0 0);}
-        outlet{ level (0 0);}
-        side{ level (0 0);}
-	blade{ level (6 6);}
-	MRF
+        inlet{ level (1 1);}
+        outlet{ level (1 1);}
+        side{ level (1 1);}
+		blade{ level (5 5);}
+		MRF
 	    {
-		level (0 0);
+			level (1 1);
 		    cellZone cellMRFzone;
 		    faceZone faceMRFzone;
 		    cellZoneInside inside;
@@ -88,7 +88,8 @@ castellatedMeshControls
 		MRF
 		{
 			mode inside;
-			levels ((1E15 1));
+			levels ((1000 1)); //levels ((1E15 1));
+
 		}
     }
 
@@ -100,12 +101,12 @@ snapControls
 {
     nSmoothPatch 3;
     tolerance 4.0;
-    nSolveIter 300;
+    nSolveIter 100;
     nRelaxIter 10;
     nFeatureSnapIter 20;
-    implicitFeatureSnap true;
-    explicitFeatureSnap false;
-    multiRegionFeatureSnap true;
+    implicitFeatureSnap false;
+    explicitFeatureSnap true;
+    multiRegionFeatureSnap false;
 }
 
 addLayersControls
@@ -114,17 +115,17 @@ addLayersControls
 
     layers
     {
-	blade.*
-	{
-		nSurfaceLayers 12;
-	}
+		blade
+		{
+			nSurfaceLayers 12;
+		}
     }
 
     expansionRatio 1.2;
     finalLayerThickness 0.3;
     minThickness 0.1;
     nGrow 12;
-    featureAngle 30;  // !
+    featureAngle 30;
     nRelaxIter 3;
     nSmoothSurfaceNormals 1;
     nSmoothNormals 3;
@@ -140,7 +141,7 @@ meshQualityControls
 {
     maxNonOrtho 65;
     maxBoundarySkewness 4;
-    maxInternalSkewness 1;
+    maxInternalSkewness 2;
     maxConcave 80;
     minVol 1e-13;
     minTetQuality -1;

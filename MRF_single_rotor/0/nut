@@ -21,28 +21,17 @@ internalField   uniform 3.16e-6;
 boundaryField
 {
 
-    /*inflow
-    {
-        type            calculated;
-	value		uniform 3.16e-6;
-    }*/
-
 	inflow
 	{
 		type			freestream;
-		freestreamValue		$internalField;
+		freestreamValue	$internalField;
 	}
 
 	outflow
 	{
 		type			freestream;
-		freestreamValue		$internalField;
+		freestreamValue	$internalField;
 	}	
-	
-	/*outflow
-	{
-		type			zeroGradient;
-	}*/
 	
 	sidee
 	{
@@ -51,7 +40,7 @@ boundaryField
 	
 	blade
 	{
-		type			nutUSpaldingWallFunction; //nutkWallFunction;
+		type			nutUSpaldingWallFunction;
 		value			uniform 0;
 	}
 	

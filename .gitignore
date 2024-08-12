@@ -1,4 +1,7 @@
 MRF_simulation_orig/*
+MRF_single_rotor_ccw/*
+MRF_quad_rotor/*
+MRF_single_rotor_komega/*
 MRF_simulation_multiregion/*
 MRF_simulation_vBendeguz/*
 pimpleTestSim/*

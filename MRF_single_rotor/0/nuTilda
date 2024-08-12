@@ -20,28 +20,16 @@ internalField   uniform 4.5e-5;
 
 boundaryField
 {
-
-    /*inflow
-    {
-        type            fixedValue;
-	value		uniform 4.5e-5;
-    }
-	
-	outflow
-	{
-		type			zeroGradient;
-	}*/
-
 	inflow
 	{
 		type			freestream;
-		freestreamValue		$internalField;
+		freestreamValue	$internalField;
 	}
 
 	outflow
 	{
 		type			freestream;
-		freestreamValue		$internalField;
+		freestreamValue	$internalField;
 	}
 	
 	sidee

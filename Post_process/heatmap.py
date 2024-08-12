@@ -4,7 +4,7 @@ import numpy as np
 
 # specify the path to your CSV file
 #csv_path = 'data_new/dynamic_pressure_field_numerically_processed_4rotor.csv'
-csv_path = 'single_rotor_pressure.csv'
+csv_path = 'processed_data/single_rotor_pressure.csv'
 # specify the z plane you want to plot
 z_plane = -0.15
 x_plane = -0.25

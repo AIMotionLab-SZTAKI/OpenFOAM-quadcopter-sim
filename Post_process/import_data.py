@@ -5,15 +5,17 @@ from scipy.interpolate import LinearNDInterpolator, NearestNDInterpolator
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
 
-data_name = "raw_inflow_vel_0.csv"
+data_name = "raw_cw"
+output_name = "single_rotor_cw"
 
-df = pd.read_csv(data_name, header=0)
+df = pd.read_csv("raw_data/" + data_name + ".csv", header=0)
 
-df = df.drop(columns=['epsilon', 'k', 'nut'])
+df = df.drop(columns=['nuTilda', 'nut'])
 df = df.rename(columns={"Points:0": "x", "Points:1": "y", "Points:2": "z",
                         "U:0": "vx", "U:1": "vy", "U:2": "vz"})
 
 # correcting the pressure with the density
+df["vz"] += 5  # correct with the inflow velocity
 df["v"] = np.sqrt(df["vx"]**2 + df["vy"]**2 + df["vz"]**2)
 df["p"] *= 1.293
 df["p"] += 0.5*1.293*df["v"]**2
@@ -50,8 +52,8 @@ df_pressure = dfi.copy()
 df_vel = dfi.copy()
 del df_pressure["vx"], df_pressure["vy"], df_pressure["vz"]
 del df_vel["p"]
-df_pressure.to_csv('single_rotor_pressure.csv', index=False)
-df_vel.to_csv('single_rotor_velocity.csv', index=False)
+df_pressure.to_csv("processed_data/" + output_name + "_pressure.csv", index=False)
+df_vel.to_csv("processed_data/" + output_name + "_velocity.csv", index=False)
 
 
 # create z heatmap
