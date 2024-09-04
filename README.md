@@ -8,7 +8,7 @@ $ git clone https://github.com/AIMotionLab-SZTAKI/OpenFOAM-quadcopter-sim
 ```
 
 ### OpenFOAM
-For the CFD simulation, OpenFOAM v10 is required, which can be installed by following the instructions here: <https://openfoam.org/download/10-ubuntu/>.
+OpenFOAM v10 is required for the CFD simulation, which can be installed by following the instructions here: <https://openfoam.org/download/10-ubuntu/>.
 
 ### Python scripts
 To be able to run the Python scripts, first open the folder containing the post-processing codes
@@ -31,4 +31,21 @@ $ ./venv/Scripts/activate
 Then, install the required packages as
 ```
 $ pip install -r requirements.txt
+```
+
+## Simulation user guide
+The mesh has to be made first, to run the CFD simulations. Download the `.stl` files from here 🔴*add link in the future!!!*🔴, and copy them into `OpenFOAM-quadcopter-sim/MRF_single_rotor/mesh/constant/triSurface/` folder. Finally, the meshing process can be started with
+```
+$ cd OpenFOAM-quadcopter-sim/MRF_single_rotor/mesh/
+$ source runMesh.sh
+```
+After the meshing process has finished, the mesh has to be copied to the main simulation folder, and some minor modifications also have to be applied with
+```
+$ cd ..
+$ source copyMesh.sh
+```
+Finally, the simulation is ready to run. It is advised to log the output into a separate file, then if necessary the log file can be viewed during the simulation:
+```
+$ source runSim.sh > log.simpleFoam &
+$ tail -f log.simpleFoam
 ```
