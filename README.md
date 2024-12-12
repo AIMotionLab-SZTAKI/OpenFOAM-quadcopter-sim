@@ -34,7 +34,7 @@ $ pip install -r requirements.txt
 ```
 
 ## Simulation user guide
-The mesh has to be made first, to run the CFD simulations. Download the `.stl` files from here 🔴*add link in the future!!!*🔴, and copy them into `OpenFOAM-quadcopter-sim/MRF_single_rotor/mesh/constant/triSurface/` folder. Finally, the meshing process can be started with
+The mesh has to be made first, to run the CFD simulations. Download the `.stl` files from [here](https://nextcloud.sztaki.hu/apps/files/files/1578197?dir=/AIMotionLab/Projects/CFD/OpenFOAM%20stl%20files), and copy them into `OpenFOAM-quadcopter-sim/MRF_single_rotor/mesh/constant/triSurface/` folder. Finally, the meshing process can be started with
 ```
 $ cd OpenFOAM-quadcopter-sim/MRF_single_rotor/mesh/
 $ source runMesh.sh
