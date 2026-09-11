@@ -18,7 +18,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 0 -5);  
+internalField   uniform (0 0 -6.25);  
 
 boundaryField
 {
@@ -41,22 +41,26 @@ boundaryField
 
 	blade_M1
 	{
-		type			noSlip;
+		type			fixedValue;
+		value			uniform (0 0 0);
 	}
 
 	blade_M2
 	{
-		type			noSlip;
+		type			fixedValue;
+		value			uniform (0 0 0);
 	}
 
 	blade_M3
 	{
-		type			noSlip;
+		type			fixedValue;
+		value			uniform (0 0 0);
 	}
 
 	blade_M4
 	{
-		type			noSlip;
+		type			fixedValue;
+		value			uniform (0 0 0);
 	}
 
 }
