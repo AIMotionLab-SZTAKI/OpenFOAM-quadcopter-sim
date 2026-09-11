@@ -1,9 +1,12 @@
 import csv
 import numpy as np
 from matplotlib import pyplot as plt
+import os
 
+
+cwd = os.path.dirname(os.path.abspath(__file__))
 init_data_file = ""
-data_file = "log_data/wind0.simpleFoam"
+data_file = os.path.join(cwd, "..", "MRF_quad_rotor_with_body", "log.simpleFoam")
 
 Ux_res = np.array([])
 Uy_res = np.array([])
